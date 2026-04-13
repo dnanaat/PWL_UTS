@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-#[Fillable(['level_id', 'username', 'nama', 'email', 'password'])]
+#[Fillable(['level_id', 'username', 'nama', 'name', 'email', 'password'])]
 #[Hidden(['password', 'remember_token'])]
 class User extends Authenticatable
 {
@@ -19,6 +19,11 @@ class User extends Authenticatable
 
     protected $table = 'm_user';
     protected $primaryKey = 'user_id';
+
+    public function level()
+    {
+        return $this->belongsTo(Level::class, 'level_id', 'level_id');
+    }
 
     /**
      * Get the attributes that should be cast.
