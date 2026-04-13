@@ -14,6 +14,10 @@ return new class extends Migration
         Schema::create('m_user', function (Blueprint $table) {
             $table->id('user_id');
             $table->unsignedBigInteger('level_id')->nullable();
+            $table->foreign('level_id')
+                  ->references('level_id')
+                  ->on('m_level')
+                  ->nullOnDelete();
             $table->string('username', 20)->unique()->nullable();
             $table->string('nama', 100)->nullable();
             $table->string('name')->nullable();
